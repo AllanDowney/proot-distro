@@ -246,7 +246,7 @@ command_install() {
 				command_install_help
 				return 0
 				;;
-			--override-alias)
+			-o|--override-alias)
 				if [ $# -ge 2 ]; then
 					shift 1
 
@@ -999,6 +999,7 @@ command_install_help() {
 	msg
 	msg "  ${GREEN}--help                         ${CYAN}- Show this help information.${RST}"
 	msg
+	msg "  ${GREEN}-o [new alias]${RST}"
 	msg "  ${GREEN}--override-alias [new alias]   ${CYAN}- Set a custom alias for installed${RST}"
 	msg "                                   ${CYAN}distribution.${RST}"
 	msg
