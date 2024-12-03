@@ -2627,7 +2627,7 @@ command_help() {
 	msg "                 ${CYAN}aliases: ${GREEN}clear${CYAN}, ${GREEN}cl${RST}"
 	msg
 	msg "${CYAN}Each of commands has its own help information. To view it, just${RST}"
-	msg "${CYAN}supply a '${GREEN}--help${CYAN}' argument to chosen command.${RST}"
+	msg "${CYAN}supply a '${GREEN}-h/--help${CYAN}' argument to chosen command.${RST}"
 	msg
 	msg "${CYAN}Hint: type command '${GREEN}${PROGRAM_NAME} list${CYAN}' to get a list of the${RST}"
 	msg "${CYAN}supported distributions. Pick a distro alias and run the next${RST}"
