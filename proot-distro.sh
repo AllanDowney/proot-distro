@@ -1409,6 +1409,7 @@ command_login() {
 	local no_link2symlink=false
 	local no_sysvipc=false
 	local no_kill_on_exit=false
+	local no_arch_warning=false
 	local login_user="root"
 	local login_wd=""
 	local -a login_env_vars
@@ -1465,6 +1466,9 @@ command_login() {
 				;;
 			--no-kill-on-exit)
 				no_kill_on_exit=true
+				;;
+			--no-arch-warning)
+				no_arch_warning=true
 				;;
 			--user)
 				if [ $# -ge 2 ]; then
@@ -1791,7 +1795,7 @@ command_login() {
 		fi
 	else
 		# Warn about CPU not supporting 32-bit instructions
-		if ! $SUPPORT_32BIT; then
+		if ! $no_arch_warning && ! $SUPPORT_32BIT; then
 			msg "${BRED}Warning: CPU doesn't support 32-bit instructions, some software may not work.${RST}"
 		fi
 	fi
@@ -2033,6 +2037,9 @@ command_login_help() {
 	msg "  ${GREEN}--no-kill-on-exit    ${CYAN}- Wait until all running processes will finish${RST}"
 	msg "                         ${CYAN}before exiting. This will cause proot to${RST}"
 	msg "                         ${CYAN}freeze if you are running daemons.${RST}"
+	msg
+	msg "  ${GREEN}--no-arch-warning     ${CYAN}- Suppress warning about CPU not supporting 32-bit${RST}"
+	msg "                         ${CYAN}instructions.${RST}"
 	msg
 	msg "  ${GREEN}--kernel [string]    ${CYAN}- Set the kernel release and compatibility${RST}"
 	msg "                         ${CYAN}level to string.${RST}"
@@ -2590,7 +2597,7 @@ command_help() {
 	msg "${CYAN}a set of functions with standardized command line interface${RST}"
 	msg "${CYAN}to let user easily manage Linux PRoot containers. By default${RST}"
 	msg "${CYAN}it supports a number of well known Linux distributions such${RST}"
-	msg "${CYAN}Alpine Linux, Debian or OpenSUSE. However it is possible to${RST}"
+	msg "${CYAN}Alpine Linux, Debian or openSUSE. However it is possible to${RST}"
 	msg "${CYAN}add others with a help of plug-ins.${RST}"
 	msg
 	msg "${CYAN}List of the available commands:${RST}"
